@@ -44,9 +44,7 @@ document.addEventListener("DOMContentLoaded", function(e){
              const currentCount = clearInterval(obj)
              disableButtons()
              
-        } else {
-            console.log("did nothing")
-        }
+        } 
      })
  }
 
@@ -72,9 +70,13 @@ document.addEventListener("DOMContentLoaded", function(e){
     const enablePlus = document.getElementById('plus')
     const enableMinus = document.getElementById('minus')
     const enableHeart = document.getElementById('heart')
-    enablePlus.innerHTML = `<button id="plus"> ➕ </button>`
-    enableMinus.innerHTML = `<button id="minus"> ➖ </button>`
-    enableHeart.innerHTML = `<button id="heart"> ❤️ </button>`
+    enablePlus.removeAttribute("disabled");
+    enableMinus.removeAttribute("disabled");
+    enableHeart.removeAttribute("disabled");
+
+//     enablePlus.innerHTML = `<button id="plus"> ➕ </button>`
+//     enableMinus.innerHTML = `<button id="minus"> ➖ </button>`
+//     enableHeart.innerHTML = `<button id="heart"> ❤️ </button>`
 }
     
  function resumeInterval(){
@@ -82,7 +84,6 @@ document.addEventListener("DOMContentLoaded", function(e){
     button.addEventListener("click", function(e) {
         const normalButton = e.target
         normalButton.textContent = "pause"
-        normalButton.dataset.status = 'pause'
         createCounter()
         let resumeCounter = setInterval(createCounter, 1000)
         resumeCounter
@@ -98,10 +99,22 @@ document.addEventListener("DOMContentLoaded", function(e){
 
 
 
- function addComment() {
-     const 
+ function addComment() { 
+    const commentForm = document.getElementById("comment-form")
+     commentForm.addEventListener("submit", function(e){
+        e.preventDefault()
+         const addComment = document.getElementById("list")
+         const comment = document.createElement("li")
+         const com = commentForm["comment"].value
+         comment.innerHTML = com
+         addComment.append(comment)
+         console.log(comment)
+     })
+     
  }
  
+ addComment()
+
   
 
 
