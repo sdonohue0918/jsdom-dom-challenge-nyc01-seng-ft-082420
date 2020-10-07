@@ -42,65 +42,81 @@ document.addEventListener("DOMContentLoaded", function(e){
              const button = e.target
              const counter = document.getElementById('counter')
              const currentCount = clearInterval(obj)
-             disableButtons()
+             document.getElementById('plus').disabled = true
+            document.getElementById('minus').disabled = true
+            document.getElementById('heart').disabled = true
+            e.target.textContent = 'resume'
+            e.target.id = 'resume'
              
-        } else {
-            console.log("did nothing")
+        } else if (e.target.matches("#resume")) {
+            document.getElementById('plus').disabled = false
+            document.getElementById('minus').disabled = false
+            document.getElementById('heart').disabled = false
+            let resumeCounter = setInterval(createCounter, 1000)
+            e.target.textContent = 'pause'
+            e.target.id = 'pause'
         }
      })
  }
 
 
- function addResumeButtonText(){
-    const button = document.querySelector('#pause')
-    button.addEventListener("click", function(e) {
-    const pauseButton = e.target
-    pauseButton.textContent = "resume"
-    pauseButton.dataset.status = 'resume'
-    resumeInterval()
+//  function addResumeButtonText(){
+//     const button = document.querySelector('#pause')
+//     button.addEventListener("click", function(e) {
+//     const pauseButton = e.target
+//     pauseButton.textContent = "resume"
+//     pauseButton.dataset.status = 'resume'
+//     resumeInterval()
     
- })
- }
+//  })
+//  }
 
- function disableButtons() {
-    const disablePlus = document.getElementById('plus').disabled = true
-    const disableMinus = document.getElementById('minus').disabled = true
-    const disableHeart = document.getElementById('heart').disabled = true
- }
-
- function enableButtons() {
-    const enablePlus = document.getElementById('plus')
-    const enableMinus = document.getElementById('minus')
-    const enableHeart = document.getElementById('heart')
-    enablePlus.innerHTML = `<button id="plus"> ➕ </button>`
-    enableMinus.innerHTML = `<button id="minus"> ➖ </button>`
-    enableHeart.innerHTML = `<button id="heart"> ❤️ </button>`
-}
-    
- function resumeInterval(){
-    const button = document.querySelector(`[data-status = "resume"]`)
-    button.addEventListener("click", function(e) {
-        const normalButton = e.target
-        normalButton.textContent = "pause"
-        normalButton.dataset.status = 'pause'
-        createCounter()
-        let resumeCounter = setInterval(createCounter, 1000)
-        resumeCounter
-        enableButtons()
-        
-        
-    })
-    
- }
  
- addResumeButtonText()
+
+//  function enableButtons() {
+//     document.getElementById('plus').disabled = false
+//     document.getElementById('minus').disabled = false
+//     document.getElementById('heart').disabled = false
+//     // enablePlus.innerHTML = `<button id="plus"> ➕ </button>`
+//     // enableMinus.innerHTML = `<button id="minus"> ➖ </button>`
+//     // enableHeart.innerHTML = `<button id="heart"> ❤️ </button>`
+// }
+    
+//  function resumeInterval(){
+//     const button = document.querySelector(`[data-status = "resume"]`)
+//     button.addEventListener("click", function(e) {
+//         const normalButton = e.target
+//         normalButton.textContent = "pause"
+//         normalButton.dataset.status = 'pause'
+        
+//         let resumeCounter = setInterval(createCounter, 1000)
+       
+//         button.removeAttribute("data-status")
+//         enableButtons()
+        
+        
+//     })
+    
+//  }
+ 
+ 
  clickHandler()
 
+ function addComment() {  const commentForm = document.getElementById("comment-form") 
+ commentForm.addEventListener("submit", function(e){       
+     e.preventDefault()       
+     const addComment = document.getElementById("list")       
+     const comment = document.createElement("li")         
+     const com = commentForm["comment"].value        
+     comment.innerHTML = com        
+     addComment.append(comment)        
+     console.log(comment)     
+    })      
+}
+ 
+ addComment()
 
 
- function addComment() {
-     const 
- }
  
   
 
